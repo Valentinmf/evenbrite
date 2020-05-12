@@ -1,7 +1,7 @@
 
 # README Eventrbrite Week 6
-
-This is a Ruby on Rails project for The Hacking Project done by Maxime Crespo ,Jules Couturaud and Clément Kuzniewycz.
+valentin figueiredo
+https://evenbritevalentinthp.herokuapp.com/
 
 ## Installation 
 
