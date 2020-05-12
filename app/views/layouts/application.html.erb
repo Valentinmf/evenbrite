@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <title>THPW06Eventbrite</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class='text-center'>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="<%= root_path %>">Eventbrite</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li>
+            <a class="nav-link" href='<%= new_event_path %>'>Create event</a>
+          </li>
+          <% if user_signed_in? && current_user.is_admin %>
+            <li>
+              <a class="nav-link" href='<%= admins_path %>'>Dashboard admin</a>
+            </li>
+          <%end%>
+        </ul>
+        <% if user_signed_in? %>
+          <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Mon profil
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href='<%= user_path(current_user.id) %>'>Mon profil</a>
+            <a class="dropdown-item" <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %> </a>
+          </div>
+        </div>
+        <% else %>
+          <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            S'inscrire / Se connecter
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href='<%= new_user_registration_path %>'>S'inscrire</a>
+            <a class="dropdown-item" href='<%= new_user_session_path %>'>Se connecter</a>
+          </div>
+        </div>
+        <% end %>
+    </nav>
+    <%= yield %>
+    <% flash.each do |key, value| %>
+ <div>
+   <a href="#" data-dismiss="alert">×</a>
+   <%= value %>
+ </div>
+<% end %>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+<h1>Les Participants</h1>
+<% event = Event.find(params[:event_id]) %>
+<ul class="list-group">
+<% event.users.each do |p| %>
+  <li class="list-group-item"><%= p.first_name + p.last_name %></li>
+<% end %>
+</ul>
+
+<a class='btn btn-dark' href='<%= edit_event_path(event.id) %>'>Editer l'évévenement</a>
+<a class="btn btn-dark"<%= link_to "Supprimer l'évévenement", event_path(event.id), method: :delete %> </a>

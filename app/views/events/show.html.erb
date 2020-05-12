@@ -1,0 +1,13 @@
+<h1><%= @event.title%></h1>
+<p><%= @event.description%></p>
+<p>Createur : <%= @creator.email %> </p>
+<p> commence le <%= @event.start_date%> finit le <%= @event.start_date + @event.duration %> </p>
+<p> Où ? <%= @event.location %> </p>
+<p> Prix : <%= @event.price %> € </p>
+<% if user_signed_in? && @event.user_id != current_user.id && @attendance == nil %>
+  <a class='btn btn-dark' href='<%= new_event_attendance_path(@event.id) %>'>Participer</a>
+<% elsif !user_signed_in? %>
+  <a class='btn btn-dark' href='<%= new_user_session_path %>'>Participer</a>
+<% elsif @event.user_id == current_user.id %>
+   <a class='btn btn-dark' href='<%= event_attendances_path(@event.id)%>'>mon espace événement</a>
+<% end %>

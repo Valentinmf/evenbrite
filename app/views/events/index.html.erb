@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Welcome to Eventbrite</h1>
+  <main role="main">
+  <div class="row">
+    <% @event.each do |e| %>
+      <div class="col-md-4">
+        <h2><%= e.title %></h2>
+        <p><%= e.description %></p>
+        <p><a class="btn btn-dark" <%= link_to "Voir l'event", event_path(e.id) %> </a></p>
+      </div>
+    <% end %>
+  </div>
+</div>

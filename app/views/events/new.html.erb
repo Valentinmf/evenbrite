@@ -1,0 +1,30 @@
+<div class='container'>  
+  <h1>Créer un événement</h1>
+  <%= form_tag url_for(action: 'create'), method: "POST" do %>
+    <div class='form-group'>
+      <%= label_tag 'Date de début :' %>
+      <%= select_date Date.today, prefix: :start_date, class: 'form-control"' %>
+    </div>
+    <div class='form-group'>
+      <%= label_tag 'Durée :'%>
+      <%= text_field_tag 'duration', nil, class: 'form-control'  %>
+    </div>
+    <div class='form-group'>
+      <%= label_tag "Titre de l'événement :"%>
+      <%= text_field_tag 'title', nil, class: 'form-control'%>
+    </div>
+    <div class='form-group'>
+      <%= label_tag "Lieu :"%>
+      <%= text_field_tag 'location', nil, class: 'form-control'%>
+    </div>
+    <div class='form-group'>
+      <%= label_tag "Description de l'événement"%>
+      <%= text_area_tag(:description, nil, size: "24x6", class: 'form-control') %>
+    </div>
+    <div class='form-group'>
+      <%= label_tag "Prix(euros) :"%>
+      <%= number_field(:event, :price, in: 0..1000, step: 10) %>
+    </div>
+      <%= submit_tag "Créer un événement ", class: 'btn btn-dark' %>
+    <% end %>
+</div>

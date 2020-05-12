@@ -1,0 +1,12 @@
+{
+  "name": "THP-W06-Eventbrite",
+  "private": true,
+  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "rubocop",
+      "pre-push": "rspec"
+    }
+  },
+  "devDependencies": {}
+}
